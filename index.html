@@ -1,50 +1,98 @@
-    <script src="/posts_data.js"></script>
-    <script>
-        const grid = document.getElementById('grid');
-        const tabs = document.querySelectorAll('.tab-btn');
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-        function render(filter) {
-            const list = filter === 'all' ? posts : posts.filter(p => p.tag === filter);
-            grid.innerHTML = list.map(p => `
-                <a href="/posts/${p.slug}.html" class="group block bg-dark-100 rounded-2xl border border-white/5 overflow-hidden hover:border-brand-500/30 hover:shadow-xl hover:shadow-brand-500/5 transition-all duration-300 hover:-translate-y-1">
-                    <div class="h-40 bg-dark-50 relative">
-                        <img src="${p.cover}" alt="${p.title}" class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-dark-100/90 via-dark-100/10 to-transparent"></div>
-                        <div class="absolute top-4 right-4 px-3 py-1 rounded-full ${p.tag === 'filmes' ? 'bg-brand-500' : 'bg-amber-500'} text-white text-xs font-bold uppercase tracking-wider">
-                            ${p.tag === 'filmes' ? 'Filme' : 'Série'}
-                        </div>
-                    </div>
-                    <div class="p-5">
-                        <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">${p.date} • ${p.readTime}</div>
-                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-brand-500 transition-colors leading-snug">${p.title}</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed line-clamp-3">${p.excerpt}</p>
-                        <div class="mt-4 flex items-center gap-1 text-brand-500 text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
-                            <span>Ler mais</span>
-                            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                        </div>
-                    </div>
-                </a>
-            `).join('');
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LaraFlix - JolieFlix</title>
+  <meta name="description" content="JolieFlix - seus filmes e series preferitos">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            inter: ['Inter', 'sans-serif']
+          },
+          colors: {
+            brand: {
+              50: '#fff1f2',
+              100: '#ffe4e6',
+              500: '#ff5b62',
+              600: '#ff2e37',
+              900: '#5c0d12'
+            },
+            dark: {
+              50: '#1a1d24',
+              100: '#141820',
+              200: '#0f1218',
+              300: '#0b0c10'
+            }
+          }
         }
+      }
+    }
+  </script>
+</head>
 
-        render('all');
+<body class="font-inter bg-dark-300 text-slate-200 antialiased">
+  <header class="relative border-b border-white/5 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-brand-500/10 via-transparent to-transparent"></div>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 relative">
+      <h1 class="text-5xl sm:text-6xl font-black tracking-tight text-white">Lara<span class="text-brand-500">Flix</span></h1>
+      <p class="text-slate-400 mt-2">Recomendacoes de filmes e series.</p>
+      <a href="#posts" class="inline-flex items-center gap-2 mt-5 px-5 py-2.5 rounded-full bg-brand-500 text-white text-sm font-semibold hover:bg-brand-600 transition-colors">Ver listas</a>
+    </div>
+  </header>
 
-        tabs.forEach(btn => {
-            btn.addEventListener('click', () => {
-                tabs.forEach(t => {
-                    t.classList.remove('active', 'bg-white/10', 'text-white');
-                    t.classList.add('text-slate-400', 'hover:text-white');
-                });
-                btn.classList.add('active', 'bg-white/10', 'text-white');
-                btn.classList.remove('text-slate-400', 'hover:text-white');
-                render(btn.dataset.filter);
-            });
-        });
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between border-b border-white/5">
+    <span class="text-white font-bold">LaraFlix</span>
+    <div class="flex items-center gap-5 text-sm">
+      <a href="/" class="text-slate-300 hover:text-white transition-colors">Inicio</a>
+      <a href="/sobre.html" class="text-slate-300 hover:text-white transition-colors">Sobre</a>
+      <a href="/contato.html" class="text-slate-300 hover:text-white transition-colors">Contato</a>
+    </div>
+  </nav>
 
-        document.getElementById('year').textContent = new Date().getFullYear();
+  <main id="posts" class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="grid"></div>
+    <div class="mt-16 p-8 rounded-3xl bg-gradient-to-br from-brand-500 to-brand-600 text-center">
+      <p class="text-white font-semibold">Fale com o bot para mais recomendacoes.</p>
+      <a href="https://t.me/Hermesvendas_bot" target="_blank" class="inline-flex items-center gap-2 mt-4 px-5 py-2.5 rounded-full bg-dark-300 text-white text-sm font-semibold">Acessar bot</a>
+    </div>
+  </main>
 
-        // Set initial active tab style
-        document.querySelector('.tab-btn.active').classList.add('bg-white/10', 'text-white');
-    </script>
+  <footer class="border-t border-white/5 mt-12">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8 text-center text-slate-500 text-sm">&copy; LaraFlix.</div>
+  </footer>
+
+  <script src="/posts_data.js"></script>
+  <script>
+    const grid = document.getElementById('grid');
+    const list = document.querySelectorAll('[data-filter]');
+
+    function render(filter) {
+      const items = filter === 'all' ? posts : posts.filter(p => p.tag === filter);
+      grid.innerHTML = items.map(p => `
+        <a href="/posts/${p.slug}.html" class="group block bg-dark-100 rounded-2xl border border-white/5 overflow-hidden hover:border-brand-500/30 transition-all duration-200">
+          <div class="h-40 bg-dark-50 relative">
+            <img src="${p.cover}" alt="${p.title}" class="absolute inset-0 w-full h-full object-cover opacity-90">
+            <div class="absolute top-3 right-3 px-2.5 py-1 rounded-full ${p.tag === 'filmes' ? 'bg-brand-500' : 'bg-amber-500'} text-white text-xs font-bold">${p.tag === 'filmes' ? 'Filme' : 'Serie'}</div>
+          </div>
+          <div class="p-5">
+            <p class="text-xs font-bold text-slate-500 uppercase tracking-wider">${p.date} • ${p.readTime}</p>
+            <h3 class="text-lg font-bold text-white mt-1 group-hover:text-brand-500 transition-colors">${p.title}</h3>
+            <p class="text-slate-400 text-sm mt-2 line-clamp-3">${p.excerpt}</p>
+          </div>
+        </a>
+      `).join('');
+    }
+
+    render('all');
+    list.forEach(btn => btn.addEventListener('click', () => render(btn.dataset.filter)));
+  </script>
 </body>
+
 </html>
