@@ -3,74 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Descubra os melhores filmes e séries para assistir agora. Reviews, listas e recomendações de entretenimento.">
-    <meta name="keywords" content="filmes, séries, Netflix, streaming, reviews, recomendações, assistir online">
-    <meta name="author" content="LaraFlix">
-    <meta property="og:title" content="LaraFlix - Sua próxima maratona começa aqui">
-    <meta property="og:description" content="Reviews e recomendações de filmes e séries. Encontre o que assistir hoje.">
-    <meta property="og:type" content="website">
-    <title>LaraFlix - Seu guia de filmes e séries</title>
-    <link rel="stylesheet" href="/style.css?v=2">
+    <title>LaraFlix - Guia de Filmes e Séries</title>
+    <meta name="description" content="Reviews e recomendações de filmes e séries. Encontre o que assistir hoje.">
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <header>
-        <h1>🎬 LaraFlix</h1>
-        <p>Seu guia definitivo de filmes e séries</p>
+    <header class="hero">
+        <div class="hero__badge">🎬 +100 filmes e séries</div>
+        <h1>LaraFlix</h1>
+        <p>Recomendações curadas para você parar de perder tempo escolhendo o que assistir.</p>
+        <a class="btn btn--primary" href="/posts">Ver listas</a>
     </header>
 
-    <nav>
+    <nav class="menu">
         <a href="/">Início</a>
         <a href="/sobre.html">Sobre</a>
         <a href="/contato.html">Contato</a>
+        <a class="menu__cta" href="https://t.me/Hermesvendas_bot" target="_blank" rel="nofollow">Acessar Bot de Vendas</a>
     </nav>
 
-    <div class="container">
-        <article class="post-card">
-            <h2><a href="/posts/melhores-filmes-terror-2025.html" style="color: inherit; text-decoration: none;">10 Melhores Filmes de Terror para Assistir em 2025</a></h2>
-            <div class="meta">6 de junho de 2025 • 6 min de leitura</div>
-            <p>O ano de 2025 está sendo generoso para os fãs de terror. Selecionamos os melhores lançamentos para maratonar.</p>
-            <a href="/posts/melhores-filmes-terror-2025.html" class="btn">Ler mais</a>
-        </article>
-
-        <article class="post-card">
-            <h2><a href="/posts/series-curtas-maratonar-uma-noite.html" style="color: inherit; text-decoration: none;">5 Séries Curtas para Maratonar em Uma Noite Só</a></h2>
-            <div class="meta">5 de junho de 2025 • 5 min de leitura</div>
-            <p>Sem tempo para séries longas? Essas tem poucos episódios e prendem do primeiro ao último.</p>
-            <a href="/posts/series-curtas-maratonar-uma-noite.html" class="btn">Ler mais</a>
-        </article>
-
-        <article class="post-card">
-            <h2><a href="/posts/filmes-parecidos-matrix.html" style="color: inherit; text-decoration: none;">Filmes Parecidos com Matrix que Você Precisa Ver</a></h2>
-            <div class="meta">4 de junho de 2025 • 7 min de leitura</div>
-            <p>Matrix marcou gerações. Se você quer mais filmes com essa pegada, essa lista é para você.</p>
-            <a href="/posts/filmes-parecidos-matrix.html" class="btn">Ler mais</a>
-        </article>
-
-        <article class="post-card">
-            <h2><a href="/posts/series-brasileiras-netflix.html" style="color: inherit; text-decoration: none;">7 Séries Brasileiras na Netflix que Valem a Pena</a></h2>
-            <div class="meta">3 de junho de 2025 • 8 min de leitura</div>
-            <p>A produção nacional finalmente ganhou o reconhecimento que merecia. Confira as melhores.</p>
-            <a href="/posts/series-brasileiras-netflix.html" class="btn">Ler mais</a>
-        </article>
-
-        <article class="post-card">
-            <h2><a href="/posts/lancamentos-acao-2025.html" style="color: inherit; text-decoration: none;">Lançamentos de Ação 2025: Os Filmes Mais Esperados</a></h2>
-            <div class="meta">2 de junho de 2025 • 7 min de leitura</div>
-            <p>2025 promete explodir os cinemas com ação de alta qualidade. Confira os lançamentos.</p>
-            <a href="/posts/lancamentos-acao-2025.html" class="btn">Ler mais</a>
-        </article>
-    </div>
-
-    <div class="container">
-        <div class="cta-box">
-            <h3>Quer acesso completo a filmes e séries?</h3>
-            <p>Fale com nosso bot no Telegram e garanta já sua conta de streaming ou ferramenta de IA.</p>
-            <a href="https://t.me/Hermesvendas_bot" class="btn" target="_blank">Acessar Bot de Vendas</a>
+    <main class="page">
+        <div class="tabs">
+            <button class="tabs__btn tabs__btn--active" data-filter="all">Tudo</button>
+            <button class="tabs__btn" data-filter="filmes">Filmes</button>
+            <button class="tabs__btn" data-filter="series">Séries</button>
         </div>
-    </div>
 
-    <footer>
-        <p>&copy; 2025 LaraFlix. Todos os direitos reservados.</p>
+        <section class="grid" id="posts"></section>
+
+        <section class="cta">
+            <h2>Quer acesso completo?</h2>
+            <p>Fale com nosso bot e garanta já sua conta de streaming ou ferramenta de IA.</p>
+            <a class="btn btn--primary" href="https://t.me/Hermesvendas_bot" target="_blank" rel="nofollow">Acessar Bot de Vendas</a>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© <span id="year"></span> LaraFlix. Todos os direitos reservados.</p>
     </footer>
+
+    <script>
+        const postData = [
+            {"slug":"melhores-filmes-terror-2025","title":"10 Melhores Filmes de Terror para Assistir em 2025","excerpt":"Lista atualizada com os filmes de terror mais assustadores do ano. De sobrenaturais a slashers, tem para todos os gostos.","date":"2025-06-06","readTime":"8 min","tag":"filmes"},
+            {"slug":"series-curtas-maratonar-uma-noite","title":"5 Séries Curtas para Maratonar em Uma Noite Só","excerpt":"Sem tempo para séries longas? Essas têm poucos episódios e prendem do primeiro ao último. Perfeitas para uma sessão única.","date":"2025-06-05","readTime":"6 min","tag":"series"},
+            {"slug":"filmes-parecidos-matrix","title":"Filmes Parecidos com Matrix que Você Precisa Ver","excerpt":"Se você curte ficção científica e reflexões sobre realidade, essas produções vão deixar sua cabeça explodindo.","date":"2025-06-04","readTime":"7 min","tag":"filmes"},
+            {"slug":"series-brasileiras-netflix","title":"7 Séries Brasileiras na Netflix que Valem a Pena","excerpt":"Do thriller ao drama, a produção nacional está cada vez melhor. Confira as séries BR que estão bombando.","date":"2025-06-03","readTime":"9 min","tag":"series"},
+            {"slug":"lancamentos-acao-2025","title":"Lançamentos de Ação 2025: Os Filmes Mais Esperados","excerpt":"De sequências aguardadas a novas franquias, prepare-se para os filmes de ação que vão dominar os cinemas este ano.","date":"2025-06-02","readTime":"7 min","tag":"filmes"}
+        ];
+
+        const grid = document.getElementById('posts');
+        const buttons = document.querySelectorAll('.tabs__btn');
+
+        function render(filter) {
+            const list = filter === 'all' ? postData : postData.filter(p => p.tag === filter);
+            grid.innerHTML = list.map(p => `
+                <a class="card" href="/posts/${p.slug}.html">
+                    <div class="card__media"></div>
+                    <div class="card__body">
+                        <div class="card__meta">${p.date} • ${p.readTime}</div>
+                        <h2>${p.title}</h2>
+                        <p>${p.excerpt}</p>
+                        <span class="card__tag">${p.tag === 'filmes' ? 'Filme' : 'Série'}</span>
+                    </div>
+                </a>
+            `).join('');
+        }
+
+        render('all');
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                buttons.forEach(b => b.classList.remove('tabs__btn--active'));
+                btn.classList.add('tabs__btn--active');
+                render(btn.dataset.filter);
+            });
+        });
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
