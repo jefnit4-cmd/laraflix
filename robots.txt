@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /posts.json
+Sitemap: https://www.laraflix.com.br/sitemap.xml
