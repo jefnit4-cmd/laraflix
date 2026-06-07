@@ -1,29 +1,84 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sobre | LaraFlix</title>
-  <meta name="description" content="Saiba mais sobre o LaraFlix, seu guia de filmes e séries.">
-  <link rel="stylesheet" href="/style.css?v=2">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre | LaraFlix</title>
+    <meta name="description" content="Saiba mais sobre o LaraFlix.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { inter: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: { 50: '#fff1f2', 100: '#ffe4e6', 500: '#ff5b62', 600: '#ff2e37', 900: '#5c0d12' },
+                        dark: { 50: '#1a1d24', 100: '#141820', 200: '#0f1218', 300: '#0b0c10' }
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-  <header>
-    <h1>🎬 LaraFlix</h1>
-    <p>Seu guia definitivo de filmes e séries</p>
-  </header>
-  <nav>
-    <a href="/">Início</a>
-    <a href="/sobre.html">Sobre</a>
-    <a href="/contato.html">Contato</a>
-  </nav>
-  <article class="container">
-    <h1>Sobre o LaraFlix</h1>
-    <p>O LaraFlix nasceu para ajudar quem quer assistir algo bom, mas não tem tempo de ficar procurando entre milhares de opções. Nós selecionamos, avaliamos e recomendamos o melhor do cinema e das séries.</p>
-    <p>Acreditamos que entretenimento de qualidade não precisa de complicação.</p>
-  </article>
-  <footer>
-    <p>&copy; 2025 LaraFlix. Todos os direitos reservados.</p>
-  </footer>
+<body class="font-inter bg-dark-300 text-slate-200 antialiased">
+    <!-- Header -->
+    <header class="relative border-b border-white/5 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-brand-500/10 via-transparent to-transparent"></div>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8 relative">
+            <a href="/" class="inline-flex items-center gap-2 text-white font-bold text-xl mb-6">🎬 Lara<span class="text-brand-500">Flix</span></a>
+            <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight">Sobre</h1>
+        </div>
+    </header>
+
+    <!-- Nav -->
+    <nav class="sticky top-0 z-50 bg-dark-300/80 backdrop-blur-lg border-b border-white/5">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14">
+            <div class="flex items-center gap-6">
+                <a href="/" class="text-white font-bold text-lg">LaraFlix</a>
+                <div class="hidden sm:flex items-center gap-4">
+                    <a href="/" class="text-slate-300 hover:text-white transition-colors text-sm font-medium">Início</a>
+                    <a href="/sobre.html" class="text-white transition-colors text-sm font-medium">Sobre</a>
+                    <a href="/contato.html" class="text-slate-300 hover:text-white transition-colors text-sm font-medium">Contato</a>
+                </div>
+            </div>
+            <a href="https://t.me/Hermesvendas_bot" target="_blank" rel="nofollow" class="px-4 py-2 rounded-full bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold transition-all">
+                Acessar Bot de Vendas
+            </a>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <main class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
+        <div class="bg-dark-100 rounded-3xl border border-white/5 p-6 sm:p-10">
+            <h2 class="text-2xl font-black text-white mb-4">Sobre o LaraFlix</h2>
+            <p class="text-slate-300 mb-4">LaraFlix é um guia de filmes e séries focado em ajudar você a encontrar o que assistir sem perder tempo. Curamos listas de lançamentos, clássicos e séries curtas para todos os gostos.</p>
+            <p class="text-slate-300 mb-4">Nosso objetivo é unir curadoria e praticidade: posts curtos, diretos e sempre com recomendações que realmente valem a pena.</p>
+            <p class="text-slate-300">Quando você encontrar algo que goste, pode acessar nosso bot no Telegram para garantir contas de streaming e ferramentas de IA.</p>
+        </div>
+        <div class="mt-6">
+            <a href="/" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-dark-100 border border-white/5 text-slate-300 hover:text-white hover:border-white/10 transition-all text-sm font-medium">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Voltar para o início
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 mt-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p class="text-slate-500 text-sm">© <span id="year"></span> LaraFlix. Todos os direitos reservados.</p>
+            <div class="flex items-center gap-4">
+                <a href="/" class="text-slate-500 hover:text-slate-300 transition-colors text-sm">Início</a>
+                <a href="/sobre.html" class="text-slate-500 hover:text-slate-300 transition-colors text-sm">Sobre</a>
+                <a href="/contato.html" class="text-slate-500 hover:text-slate-300 transition-colors text-sm">Contato</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
